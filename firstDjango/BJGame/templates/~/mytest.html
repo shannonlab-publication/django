@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang=”ja”>
+<head>
+<meta charset=”UTF-8″>
+<title>BJGame</title>
+</head>
+<body>
+
+ <p>ベッドしてください</p>
+
+<h2>Dealer</h2>
+<ul>
+
+        <li> dealers card</li>
+
+</ul>
+<p>Dealer point : 21</p>
+
+<h2>Player</h2>
+<ul>
+
+        <li> players card</li>
+
+</ul>
+<p>Player point : 20</p>
+
+<p>money : 990</p>
+<p>bet : 10</p>
+
+<form action="" method="POST">
+
+        <p>
+            bet：<input type="text" name="bet" size="20">
+        </p>
+   	    <p>
+            <input type="radio" name="operation" value="hit" checked="checked">Hit
+            <input type="radio" name="operation" value="stand">Stand
+            <input type="radio" name="operation" value="double" {% if not able_double %} disabled="disabled" {% endif %}>Double
+        </p>    
+    <p><input type="submit" value="送信"></p>
+</form>
+
+</body>
+
+</html>

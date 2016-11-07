@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>form_test</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p> 記号<br>
+        <select name="suit">
+            <option value="H">ハート</option>
+            <option value="D">ダイヤ</option>
+            <option value="S">スペード</option>
+            <option value="C">クラブ</option>
+        </select>
+        </p>
+        <p>数字<br>
+        <select name="rank">
+            {% for i in rank_list %}
+                <option value={{i}}>{{i}}</option>
+            {% endfor %}
+        </select>
+        </p>
+        <p>
+            <input type="submit" value="送信">
+        </p>
+    </form>
+</body>
+</html>

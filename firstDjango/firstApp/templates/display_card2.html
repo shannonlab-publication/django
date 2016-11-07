@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang=”ja”>
+<head>
+<meta charset=”UTF-8″>
+<title>トランプ</title>
+</head>
+<body>
+    {% static "cards/" as card_path %}
+    <img src="{{ card_path }}{{suit}}_{{ rank }}.png">
+</body>
+</html>

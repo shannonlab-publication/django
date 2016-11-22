@@ -120,7 +120,7 @@ def game(request):
                 player_point = bj.get_point(player_hands)
                 msg, money = bj.win_lose(dealer_hands, player_hands, bet, money)
                 if money <= 0:
-                    return HttpResponse('GameOver')
+                    return render(request, 'gameover.html')
                 r.set_redis(token, 'money', money)
                 msg += ' ベットしてください．'
 

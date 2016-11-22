@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Black Jack Game</title>
-    <!-- BootstrapのCSS読み込み -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- BootstrapのJS読み込み -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   </head>
@@ -18,7 +16,7 @@
                     	</div>
         </div>
         <div style="background: url({% static 'python_bk_s_new.png' %}) no-repeat 0% 0%;">
-            
+
         <div class="container">
             <div class="row">
                 <div class="col-xs-3">
@@ -34,7 +32,7 @@
                 <div class="col-xs-8">
                     <ul class="card">
                         {% static "cards/" as card_path %}
-                        {% if dealer_cards|length  == 1 %} 
+                        {% if dealer_cards|length  == 1 %}
                             <li> <img src="{{ card_path }}card_bk_red.png"></li>
                         {% endif %}
                         {% for c in dealer_cards %}

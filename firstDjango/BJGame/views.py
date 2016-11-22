@@ -19,7 +19,7 @@ def game(request):
         request.session['token'] = token
 
         r.set_redis(token,'game_now', False)
-           
+
         deck = bj.make_deck()
         r.set_redis(token, 'deck', deck)
         r.set_redis(token, 'money', 100)
@@ -50,8 +50,22 @@ def game(request):
 
         if(r.get_redis(token, 'game_now') == False):
 
+            try:
+                money -= int(request.POST['bet'])
+            except ValueError:
+                dictionary = {
+                    "msg" : msg,
+                    "dealer_cards" : [],
+                    "dealer_point" : 0,
+                    "player_cards" : [],
+                    "player_point" : 0,
+                    "able_bet" : True,
+                    "money" : money,
+                }
+                dictionary.update(csrf(request))
+                return render(request, "bjgame2.html", dictionary)
+
             r.set_redis(token, 'game_now', True)
-            money -= int(request.POST['bet'])
             r.set_redis(token, 'money', money)
             r.set_redis(token, 'bet', int(request.POST['bet']))
             dealer_hands = []
@@ -81,7 +95,7 @@ def game(request):
             }
             dictionary.update(csrf(request))
             return render(request, "bjgame2.html", dictionary)
-        
+
         else:
             op = request.POST['operation']
             bet = r.get_redis(token, 'bet')
@@ -106,9 +120,9 @@ def game(request):
                 player_point = bj.get_point(player_hands)
                 msg, money = bj.win_lose(dealer_hands, player_hands, bet, money)
                 if money <= 0:
-                    return HttpResponse("GameOver")
+                    return HttpResponse('GameOver')
                 r.set_redis(token, 'money', money)
-                msg += " ベットしてください．"
+                msg += ' ベットしてください．'
 
                 dictionary = {
                     "msg" : msg,
@@ -125,7 +139,7 @@ def game(request):
                 r.set_redis(token, 'deck', deck)
                 r.set_redis(token, 'game_now', False)
 
-                return render(request, "bjgame2.html", dictionary) 
+                return render(request, "bjgame2.html", dictionary)
 
             else:
                 r.set_redis(token, 'deck', deck)
@@ -141,7 +155,3 @@ def game(request):
                 }
                 dictionary.update(csrf(request))
                 return render(request, "bjgame2.html", dictionary)
-
-
-
-

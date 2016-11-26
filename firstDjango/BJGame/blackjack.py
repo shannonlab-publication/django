@@ -1,6 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 import random
-#import pandas as pd
+import pandas as pd
 
 RANK, SUIT = 0, 1
 
@@ -109,7 +109,9 @@ def dealer_op(deck,player_hand,dealer_hand):
         print_dealer_hand(dealer_hand, False)
 """
 def dealer_op_ai(deck, player_hand, dealer_hand):
-    df = pd.read_csv("optimal_policy.csv", header=1, names=('s','hit','stay','optimal'))
+    file_path = os.path.join('/var/www/django/firstDjango/BJGame','optimal_policy.csv')
+    csv = open(file_path)
+    df = pd.read_csv(csv, header=1, names=('s','hit','stay','optimal'))
     while get_point(dealer_hand) <= 21:
         state_str = '(' + str(get_point(dealer_hand)) \
          +', ' + str(player_hand[0][RANK] if player_hand[0][RANK] <11 else 10) + ')'

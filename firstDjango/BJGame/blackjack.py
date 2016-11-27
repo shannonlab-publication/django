@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 import random
 import pandas as pd
-
+import os
 RANK, SUIT = 0, 1
 
 # デッキ(カード)を作る関数
@@ -107,7 +107,8 @@ def dealer_op(deck,player_hand,dealer_hand):
             dealer_hand.append(deck.pop())
 
         print_dealer_hand(dealer_hand, False)
-"""
+
+# 5章でつかいます
 def dealer_op_ai(deck, player_hand, dealer_hand):
     file_path = os.path.join('/var/www/django/firstDjango/BJGame','optimal_policy.csv')
     csv = open(file_path)
@@ -124,7 +125,7 @@ def dealer_op_ai(deck, player_hand, dealer_hand):
             dealer_hand.append(deck.pop())
 
         print_dealer_hand(dealer_hand, False)
-"""
+
 def main():
     turn = 1
 

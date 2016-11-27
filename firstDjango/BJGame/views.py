@@ -116,6 +116,7 @@ def game(request):
                 r.set_redis(token, 'money', money)
 
             if  ending :
+                dealer_hands.append(deck.pop())
                 bj.dealer_op(deck, player_hands, dealer_hands)
                 r.set_redis(token, 'dealer_hands', dealer_hands)
 

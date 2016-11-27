@@ -9,10 +9,20 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   </head>
-	<body>
+  <body>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="nav navbar-brand" href="/ics/gpa/">Black Jack Game</a>
+           
+        </div>
+            <ul class="nav navbar-nav">
+                <li><a href="../game"><i class="glyphicon glyphicon-play"></i>ゲーム</a></li>
+                <li><a href="../howto/"><i class="glyphicon glyphicon-question-sign"></i>遊び方</a></li>
+            </ul>
+    </nav>
         <div class="panel panel-default">
                     	<div class="panel-body">
-                    		{{ msg }}
+                    		<B>{{ msg }}</B>
                     	</div>
         </div>
         <div style="background: url({% static 'python_bk_s_new.png' %}) no-repeat 0% 0%;">

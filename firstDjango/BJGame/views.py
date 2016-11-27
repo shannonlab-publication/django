@@ -51,8 +51,11 @@ def game(request):
         if(r.get_redis(token, 'game_now') == False):
 
             try:
+                if money < int(request.POST['bet']):
+                    raise ValueError('too large bet')
                 money -= int(request.POST['bet'])
             except ValueError:
+                msg = '正しくベットしてください。'
                 dictionary = {
                     "msg" : msg,
                     "dealer_cards" : [],
@@ -155,3 +158,6 @@ def game(request):
                 }
                 dictionary.update(csrf(request))
                 return render(request, "bjgame2.html", dictionary)
+                
+def howto(request):
+    return render(request, 'howto.html')

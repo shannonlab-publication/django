@@ -29,7 +29,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             コンピュータ
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-8">
+                <div class="col-md-8">
                     <ul class="card">
                         {% static "cards/" as card_path %}
                         {% if dealer_cards|length  == 1 %}
@@ -53,13 +53,13 @@
             </div>
             <form  action="" method="POST">{% csrf_token %}
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-md-3">
                     <ul class="list-group">
                     	<li class="list-group-item">ベット: {{ bet }}</li>
                     	<li class="list-group-item">所持金: {{ money }}</li>
                     </ul>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-md-4">
                     {% if able_bet == True %}
                     <div class="form-group">
                         <label>
@@ -87,7 +87,7 @@
                     {% endif %}
 
                 </div>
-                <div class="col-xs-2">
+                <div class="col-md-2">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
 
@@ -95,7 +95,7 @@
             </form>
 
             <form><div class="row">
-                <div class="col-xs-3">
+                <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             プレイヤー
@@ -107,7 +107,7 @@
                 </div>
 
 
-                <div class="col-xs-8">
+                <div class="col-md-8">
                     <ul class="card">
                         {% static "cards/" as card_path %}
                         {% for c in player_cards %}

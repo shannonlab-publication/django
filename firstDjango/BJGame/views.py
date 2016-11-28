@@ -14,7 +14,7 @@ def conv_image_path(list):
     return tmp
 
 def game(request):
-    if request.method == "GET":
+    if request.method == 'GET':
         token = str(random.random())
         request.session['token'] = token
 
@@ -28,19 +28,19 @@ def game(request):
         r.set_redis(token, 'player_hands', [])
         r.set_redis(token, 'dealer_hands', [])
         dictionary = {
-            "msg" : "ベットしてください．",
-            "dealer_cards" : [] ,
-            "dealer_point" : 0,
-            "player_cards" : [],
-            "player_point" : 0,
-            "able_bet" : True,
-            "money" : 100,
+            'msg' : 'ベットしてください．',
+            'dealer_cards' : [] ,
+            'dealer_point' : 0,
+            'player_cards' : [],
+            'player_point' : 0,
+            'able_bet' : True,
+            'money' : 100,
         }
         dictionary.update(csrf(request))
 
-        return render(request, "bjgame2.html", dictionary)
+        return render(request, 'bjgame2.html', dictionary)
 
-    elif request.method == "POST":
+    elif request.method == 'POST':
         token = request.session['token']
         deck = r.get_redis(token, 'deck')
         money = r.get_redis(token, 'money')
@@ -57,16 +57,16 @@ def game(request):
             except ValueError:
                 msg = '正しくベットしてください。'
                 dictionary = {
-                    "msg" : msg,
-                    "dealer_cards" : [],
-                    "dealer_point" : 0,
-                    "player_cards" : [],
-                    "player_point" : 0,
-                    "able_bet" : True,
-                    "money" : money,
+                    'msg' : msg,
+                    'dealer_cards' : [],
+                    'dealer_point' : 0,
+                    'player_cards' : [],
+                    'player_point' : 0,
+                    'able_bet' : True,
+                    'money' : money,
                 }
                 dictionary.update(csrf(request))
-                return render(request, "bjgame2.html", dictionary)
+                return render(request, 'bjgame2.html', dictionary)
 
             r.set_redis(token, 'game_now', True)
             r.set_redis(token, 'money', money)
@@ -86,18 +86,18 @@ def game(request):
             r.set_redis(token, 'deck', deck)
 
             dictionary = {
-                "msg" : "選択してください．",
-                "dealer_cards" : conv_image_path(dealer_hands) ,
-                "dealer_point" : dealer_point,
-                "player_cards" : conv_image_path(player_hands),
-                "player_point" : player_point,
-                "able_bet" : False,
-                "able_double" : True,
-                "money" : money,
-                "bet" : int(request.POST['bet']),
+                'msg' : '選択してください．',
+                'dealer_cards' : conv_image_path(dealer_hands) ,
+                'dealer_point' : dealer_point,
+                'player_cards' : conv_image_path(player_hands),
+                'player_point' : player_point,
+                'able_bet' : False,
+                'able_double' : True,
+                'money' : money,
+                'bet' : int(request.POST['bet']),
             }
             dictionary.update(csrf(request))
-            return render(request, "bjgame2.html", dictionary)
+            return render(request, 'bjgame2.html', dictionary)
 
         else:
             op = request.POST['operation']
@@ -129,13 +129,13 @@ def game(request):
                 msg += ' ベットしてください．'
 
                 dictionary = {
-                    "msg" : msg,
-                    "dealer_cards" : conv_image_path(dealer_hands) ,
-                    "dealer_point" : bj.get_point(dealer_hands),
-                    "player_cards" : conv_image_path(player_hands),
-                    "player_point" : bj.get_point(player_hands),
-                    "able_bet" : True,
-                    "money" : money,
+                    'msg' : msg,
+                    'dealer_cards' : conv_image_path(dealer_hands) ,
+                    'dealer_point' : bj.get_point(dealer_hands),
+                    'player_cards' : conv_image_path(player_hands),
+                    'player_point' : bj.get_point(player_hands),
+                    'able_bet' : True,
+                    'money' : money,
                 }
                 dictionary.update(csrf(request))
 
@@ -143,22 +143,22 @@ def game(request):
                 r.set_redis(token, 'deck', deck)
                 r.set_redis(token, 'game_now', False)
 
-                return render(request, "bjgame2.html", dictionary)
+                return render(request, 'bjgame2.html', dictionary)
 
             else:
                 r.set_redis(token, 'deck', deck)
 
                 dictionary = {
-                    "dealer_cards" : conv_image_path(dealer_hands) ,
-                    "dealer_point" : bj.get_point(dealer_hands),
-                    "player_cards" : conv_image_path(player_hands),
-                    "player_point" : player_point,
-                    "able_bet" : False,
-                    "money" : money,
-                    "bet" :bet,
+                    'dealer_cards' : conv_image_path(dealer_hands) ,
+                    'dealer_point' : bj.get_point(dealer_hands),
+                    'player_cards' : conv_image_path(player_hands),
+                    'player_point' : player_point,
+                    'able_bet' : False,
+                    'money' : money,
+                    'bet' :bet,
                 }
                 dictionary.update(csrf(request))
-                return render(request, "bjgame2.html", dictionary)
+                return render(request, 'bjgame2.html', dictionary)
                 
 def howto(request):
     return render(request, 'howto.html')

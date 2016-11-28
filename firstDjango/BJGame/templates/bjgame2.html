@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Black Jack Game</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
   </head>
   <body>
@@ -20,16 +20,20 @@
                 <li><a href="../howto/"><i class="glyphicon glyphicon-question-sign"></i>遊び方</a></li>
             </ul>
     </nav>
+        <div class="msg">
         <div class="panel panel-default">
                     	<div class="panel-body">
                     		<B>{{ msg }}</B>
                     	</div>
         </div>
-        <div style="background: url({% static 'python_bk_s_new.png' %}) no-repeat 0% 0%;">
+        </div>
+        <div style="background-image: url({% static 'python_bk_s_new.png' %});
+                    background-repeat: no-repeat;
+                    background-position : 12px 2px;">
 
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-xs-3">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             コンピュータ
@@ -39,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <ul class="card">
                         {% static "cards/" as card_path %}
                         {% if dealer_cards|length  == 1 %}
@@ -53,13 +57,13 @@
             </div>
             <form  action="" method="POST">{% csrf_token %}
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-xs-3">
                     <ul class="list-group">
                     	<li class="list-group-item">ベット: {{ bet }}</li>
                     	<li class="list-group-item">所持金: {{ money }}</li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     {% if able_bet == True %}
                     <div class="form-group">
                         <label>
@@ -87,7 +91,7 @@
                     {% endif %}
 
                 </div>
-                <div class="col-md-2">
+                <div class="col-xs-2">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
 
@@ -95,7 +99,7 @@
             </form>
 
             <form><div class="row">
-                <div class="col-md-3">
+                <div class="col-xs-3">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             プレイヤー
@@ -107,7 +111,7 @@
                 </div>
 
 
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <ul class="card">
                         {% static "cards/" as card_path %}
                         {% for c in player_cards %}

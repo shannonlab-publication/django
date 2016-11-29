@@ -125,6 +125,7 @@ def dealer_op_ai(deck, player_hand, dealer_hand):
             dealer_hand.append(deck.pop())
 
         print_dealer_hand(dealer_hand, False)
+    csv.close()
 
 def main():
     turn = 1

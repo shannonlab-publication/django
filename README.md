@@ -10,3 +10,10 @@
 ![完成版キャプチャ](https://github.com/shannonlab-publication/django/blob/master/cap.PNG)
 
 
+Pythonプログラミングのツボとコツがゼッタイにわかる本
+
+Shannon Lab株式会社 (著)
+
+秀和システム（出版）
+
+本サンプルファイルはMITライセンスのもとで公開しています
